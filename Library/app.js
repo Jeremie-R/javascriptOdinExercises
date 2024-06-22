@@ -18,7 +18,7 @@ function Book(name, author, pageQuantity, readingStatus = false) {
   }
   
   return book 
-  //aparently i might not need to return a book object
+  //aparently i might not need to return a book object but it fails if i remove it
 }
 
 
