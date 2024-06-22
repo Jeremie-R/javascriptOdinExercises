@@ -17,7 +17,8 @@ function Book(name, author, pageQuantity, readingStatus = false) {
     readingStatus: readingStatus,
   }
   
-  return book
+  return book 
+  //aparently i might not need to return a book object
 }
 
 
@@ -29,7 +30,6 @@ function addBookToLibrary(book) {
 let button = document.getElementById("button");
 button.addEventListener("click", ()=> {
   console.log("button clicked");
-  console.log(trialBook);
 
   //promtp mode
   var name = prompt("Name of the book");
@@ -40,6 +40,7 @@ button.addEventListener("click", ()=> {
   let promptBook = Book(name, author, pageQuantity, readingStatus);
   addBookToLibrary(promptBook);
   console.log(myLibrary);
+  DisplayLibrary();
                       
 }
 )
@@ -49,18 +50,16 @@ button.addEventListener("click", ()=> {
 // display library in html using the list
 function DisplayLibrary() {
   let list = document.getElementById("list");
+  //nead to clear current list
+  list.innerHTML = '';
 
   myLibrary.forEach(book => {
-    console.log("hot");
+
     const bookLine = document.createElement("li");
 
-    let status = if(book.status == true){"read"}else{"not read"};
-      
+    bookLine.innerHTML = `<p><b>${book.name}</b>, by ${book.author}, ${book.pageQuantity}, ${book.readingStatus} </p>`;
 
-    bookLine.innerHTML =
-      "
-      <p><b>${book.name}</b>, by ${book.author}, ${book.pageQuantity}, ${status} </p>
-      "
+    list.appendChild(bookLine);
   })
 
   
