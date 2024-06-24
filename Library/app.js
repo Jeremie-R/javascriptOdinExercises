@@ -53,13 +53,31 @@ function DisplayLibrary() {
   //nead to clear current list
   list.innerHTML = '';
 
-  myLibrary.forEach(book => {
+  
+
+  myLibrary.forEach((book, index) => {
 
     const bookLine = document.createElement("li");
 
-    bookLine.innerHTML = `<p><b>${book.name}</b>, by ${book.author}, ${book.pageQuantity}, ${book.readingStatus} </p>`;
+    let status = book.readingStatus ? "read" : "not read";
+    bookLine.innerHTML = 
+    `
+    <p><b>${book.name}</b>, by ${book.author}, ${book.pageQuantity} pages, ${status}, </p>
+    <button id="read${index}">Read/Unread</button>
+    <button id="delete${index}">Delete</button>
+    `;
 
     list.appendChild(bookLine);
+
+    const readButton = document.getElementById(`read${index}`);
+    readButton.addEventListener("click", () => ChangeStatus(index));
+
+    const deleteButton = document.getElementById(`delete${index}`);
+    deleteButton.addEventListener("click", () => Delete(index));
+
+
+    
+
   })
 
   
@@ -67,5 +85,15 @@ function DisplayLibrary() {
 
 
 //function to change status
+function ChangeStatus(index) {
+  myLibrary[index].readingStatus = !myLibrary[index].readingStatus;
+  DisplayLibrary(); 
+}
+
+
 
 //function to delete
+function Delete(index) {
+  myLibrary.splice(index, 1);
+  DisplayLibrary();  
+}
