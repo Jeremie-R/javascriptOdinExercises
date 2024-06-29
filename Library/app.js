@@ -97,3 +97,12 @@ function Delete(index) {
   myLibrary.splice(index, 1);
   DisplayLibrary();  
 }
+
+let formSubmit = document.getElementById("submit");
+formSubmit.addEventListener("click", () => form())
+
+//funtction for form
+function form(){
+  console.log("clicked");
+  
+}
