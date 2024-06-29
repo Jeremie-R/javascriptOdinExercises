@@ -98,11 +98,32 @@ function Delete(index) {
   DisplayLibrary();  
 }
 
-let formSubmit = document.getElementById("submit");
-formSubmit.addEventListener("click", () => form())
+let formSubmit = document.getElementById("bookForm");
+formSubmit.addEventListener("submit",  () => form());
+  
+  
 
 //funtction for form
-function form(){
+function form() {
   console.log("clicked");
-  
+
+  //form mode
+  var name = valueOfID('name');
+  var author = valueOfID('author');
+  var pageQuantity = valueOfID('pages');
+  var readingStatus = valueOfID('readStatus');
+
+
+  let formBook = Book(name, author, pageQuantity, readingStatus);
+  addBookToLibrary(formBook);
+  console.log(myLibrary);
+  DisplayLibrary();
+
+
+}
+
+function valueOfID(id) {
+  let target = document.getElementById(id);
+  let value = target.value;
+  return value
 }
