@@ -99,9 +99,16 @@ function Delete(index) {
 }
 
 let formSubmit = document.getElementById("bookForm");
-formSubmit.addEventListener("submit",  () => form());
+formSubmit.addEventListener("submit",  function(event) {
+  event.preventDefault(); 
+  if (this.checkValidity()) {
+      form(); 
+  }
+});
   
   
+
+
 
 //funtction for form
 function form() {
@@ -111,7 +118,8 @@ function form() {
   var name = valueOfID('name');
   var author = valueOfID('author');
   var pageQuantity = valueOfID('pages');
-  var readingStatus = valueOfID('readStatus');
+
+  var readingStatus = document.getElementById('readStatus').checked;
 
 
   let formBook = Book(name, author, pageQuantity, readingStatus);
@@ -119,6 +127,7 @@ function form() {
   console.log(myLibrary);
   DisplayLibrary();
 
+  document.getElementById("bookForm").reset();
 
 }
 
